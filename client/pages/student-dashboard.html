@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Student Dashboard</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-dark bg-primary">
+
+<div class="container">
+
+<span class="navbar-brand">
+Student Dashboard
+</span>
+
+<button
+class="btn btn-light"
+onclick="logout()">
+
+Logout
+
+</button>
+
+</div>
+
+</nav>
+
+<div class="container mt-5">
+
+<h2 id="welcome"></h2>
+
+<div class="card p-4 shadow">
+
+<h4>Welcome to Campus Placement Portal 🎉</h4>
+
+<p>
+
+You have successfully logged in.
+
+</p>
+
+</div>
+
+</div>
+
+<script>
+
+const student = JSON.parse(localStorage.getItem("student"));
+
+if(student){
+
+document.getElementById("welcome").innerHTML =
+"Welcome, " + student.full_name;
+
+}
+
+function logout(){
+
+localStorage.removeItem("student");
+
+window.location.href="student-login.html";
+
+}
+
+</script>
+
+</body>
+
+</html>
