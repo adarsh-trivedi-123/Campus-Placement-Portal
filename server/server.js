@@ -4,6 +4,7 @@ const path = require("path");
 const db = require("./config/db");
 const studentRoutes = require("./routes/studentRoutes");
 const companyRoutes=require("./routes/companyRoutes");
+const jobRoutes = require("./routes/jobRoutes");
 
 
 const app = express();
@@ -17,6 +18,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/api/students", studentRoutes);
 app.use("/api/companies", companyRoutes);
+app.use("/api/jobs", jobRoutes);
 
 // =======================
 // Serve Frontend
