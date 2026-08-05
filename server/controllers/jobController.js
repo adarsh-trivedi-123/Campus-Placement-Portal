@@ -31,7 +31,7 @@ const postJob = (req, res) => {
             eligibility,
             last_date
         ],
-        (err, result) => {
+        (err) => {
 
             if (err) {
 
@@ -59,16 +59,42 @@ const postJob = (req, res) => {
 const getAllJobs = (req, res) => {
 
     const sql = `
-        SELECT
-            jobs.*,
-            companies.company_name
+        SELECT jobs.*, companies.company_name
         FROM jobs
         INNER JOIN companies
-            ON jobs.company_id = companies.id
+        ON jobs.company_id = companies.id
         ORDER BY jobs.id DESC
     `;
 
     db.query(sql, (err, result) => {
+
+        if (err) {
+            return res.status(500).json({
+                success: false,
+                message: "Database Error"
+            });
+        }
+
+        res.json(result);
+
+    });
+
+};
+
+// ================= Company Jobs =================
+
+const getCompanyJobs = (req, res) => {
+
+    const { id } = req.params;
+
+    const sql = `
+        SELECT *
+        FROM jobs
+        WHERE company_id = ?
+        ORDER BY id DESC
+    `;
+
+    db.query(sql, [id], (err, result) => {
 
         if (err) {
 
@@ -79,9 +105,39 @@ const getAllJobs = (req, res) => {
 
         }
 
-        res.status(200).json(result);
+        res.json(result);
 
     });
+
+};
+
+// ================= Delete Job =================
+
+const deleteJob = (req, res) => {
+
+    const { id } = req.params;
+
+    db.query(
+        "DELETE FROM jobs WHERE id=?",
+        [id],
+        (err) => {
+
+            if (err) {
+
+                return res.status(500).json({
+                    success: false,
+                    message: "Delete Failed"
+                });
+
+            }
+
+            res.json({
+                success: true,
+                message: "Job Deleted Successfully"
+            });
+
+        }
+    );
 
 };
 
@@ -89,5 +145,7 @@ const getAllJobs = (req, res) => {
 
 module.exports = {
     postJob,
-    getAllJobs
+    getAllJobs,
+    getCompanyJobs,
+    deleteJob
 };

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Company Dashboard</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+
+</head>
+
+<body class="bg-light">
+
+<nav class="navbar navbar-dark bg-primary">
+
+<div class="container">
+
+<h4 class="text-white m-0">
+🏢 Company Dashboard
+</h4>
+
+<div>
+
+<span id="companyName" class="text-white me-3"></span>
+
+<button class="btn btn-warning" onclick="logout()">
+
+Logout
+
+</button>
+
+</div>
+
+</div>
+
+</nav>
+
+<div class="container mt-4">
+
+<div class="card shadow">
+
+<div class="card-header bg-primary text-white">
+
+<h4>Post New Job</h4>
+
+</div>
+
+<div class="card-body">
+
+<form id="jobForm">
+
+<input type="hidden" id="company_id">
+
+<div class="mb-3">
+
+<label>Job Title</label>
+
+<input type="text" id="job_title" class="form-control" required>
+
+</div>
+
+<div class="mb-3">
+
+<label>Description</label>
+
+<textarea id="job_description"
+rows="4"
+class="form-control"
+required></textarea>
+
+</div>
+
+<div class="row">
+
+<div class="col-md-6">
+
+<input type="text"
+id="location"
+placeholder="Location"
+class="form-control">
+
+</div>
+
+<div class="col-md-6">
+
+<input type="text"
+id="salary"
+placeholder="Salary"
+class="form-control">
+
+</div>
+
+</div>
+
+<br>
+
+<div class="row">
+
+<div class="col-md-6">
+
+<input type="text"
+id="eligibility"
+placeholder="Eligibility"
+class="form-control">
+
+</div>
+
+<div class="col-md-6">
+
+<input type="date"
+id="last_date"
+class="form-control">
+
+</div>
+
+</div>
+
+<br>
+
+<button class="btn btn-success w-100">
+
+Post Job
+
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+<br>
+
+<div class="card shadow">
+
+<div class="card-header bg-dark text-white">
+
+<h4>My Posted Jobs</h4>
+
+</div>
+
+<div class="card-body">
+
+<table class="table table-bordered">
+
+<thead>
+
+<tr>
+
+<th>Title</th>
+<th>Location</th>
+<th>Salary</th>
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+<tbody id="jobsTable">
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+<script src="../js/company-dashboard.js"></script>
+
+</body>
+
+</html>

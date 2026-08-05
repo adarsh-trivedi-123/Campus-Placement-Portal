@@ -19,72 +19,126 @@
 </head>
 
 <body>
+<!-- ================= NAVBAR START ================= -->
 
-    <!-- ================= NAVBAR START ================= -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top shadow">
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top shadow">
-        <div class="container">
+    <div class="container">
 
-            <a class="navbar-brand fw-bold" href="#">
-                🎓 Campus Placement Portal
-            </a>
+        <a class="navbar-brand fw-bold" href="index.html">
+            🎓 Campus Placement Portal
+        </a>
 
-            <button class="navbar-toggler" type="button"
+        <button class="navbar-toggler"
+                type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#navbarNav">
 
-                <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon"></span>
 
-            </button>
+        </button>
 
-            <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="collapse navbar-collapse" id="navbarNav">
 
-                <ul class="navbar-nav ms-auto">
+            <ul class="navbar-nav ms-auto">
 
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">Home</a>
-                    </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="index.html">Home</a>
+                </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
-                    </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#about">About</a>
+                </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Jobs</a>
-                    </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="pages/jobs.html">Jobs</a>
+                </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Companies</a>
-                    </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#contact">Contact</a>
+                </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
-                    </li>
+                <!-- Login Dropdown -->
 
-                </ul>
+                <li class="nav-item dropdown">
 
-                <div class="ms-lg-3 mt-3 mt-lg-0">
-
-                    <a href="pages/student-login.html"
-                        class="btn btn-light me-2">
+                    <a class="nav-link dropdown-toggle"
+                       href="#"
+                       role="button"
+                       data-bs-toggle="dropdown">
 
                         Login
 
                     </a>
 
-                    <a href="pages/student-register.html"
-                        class="btn btn-warning">
+                    <ul class="dropdown-menu">
+
+                        <li>
+                            <a class="dropdown-item"
+                               href="pages/student-login.html">
+
+                                👨‍🎓 Student Login
+
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item"
+                               href="pages/company-login.html">
+
+                                🏢 Company Login
+
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </li>
+
+                <!-- Register Dropdown -->
+
+                <li class="nav-item dropdown">
+
+                    <a class="nav-link dropdown-toggle"
+                       href="#"
+                       role="button"
+                       data-bs-toggle="dropdown">
 
                         Register
 
                     </a>
 
-                </div>
+                    <ul class="dropdown-menu">
 
-            </div>
+                        <li>
+                            <a class="dropdown-item"
+                               href="pages/student-register.html">
+
+                                👨‍🎓 Student Register
+
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item"
+                               href="pages/company-register.html">
+
+                                🏢 Company Register
+
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </li>
+
+            </ul>
 
         </div>
-    </nav>
+
+    </div>
+
+</nav>
 
     <!-- ================= HERO SECTION ================= -->
 

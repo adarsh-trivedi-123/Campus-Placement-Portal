@@ -115,3 +115,20 @@ section{
 .about img{
     max-width:100%;
 }
+.show{
+
+    opacity:1;
+
+    transform:translateY(0);
+
+}
+
+.feature-card{
+
+    opacity:0;
+
+    transform:translateY(40px);
+
+    transition:.6s;
+
+}
