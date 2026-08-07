@@ -2,6 +2,8 @@ const express = require("express");
 
 const router = express.Router();
 
+const verifyToken = require("../middleware/authMiddleware");
+
 const {
     postJob,
     getAllJobs,
@@ -9,16 +11,16 @@ const {
     deleteJob
 } = require("../controllers/jobController");
 
-// Post Job
-router.post("/post", postJob);
-
-// View All Jobs
+// Public Route - View All Jobs
 router.get("/", getAllJobs);
 
-// Company Jobs
-router.get("/company/:id", getCompanyJobs);
+// Protected Route - Post Job
+router.post("/post", verifyToken, postJob);
 
-// Delete Job
-router.delete("/:id", deleteJob);
+// Protected Route - Company Jobs
+router.get("/company/:id", verifyToken, getCompanyJobs);
+
+// Protected Route - Delete Job
+router.delete("/:id", verifyToken, deleteJob);
 
 module.exports = router;

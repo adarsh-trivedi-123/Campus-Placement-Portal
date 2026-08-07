@@ -2,15 +2,19 @@ const express = require("express");
 
 const router = express.Router();
 
+const verifyToken = require("../middleware/authMiddleware");
+
 const {
     registerCompany,
-    loginCompany
+    loginCompany,
+    getApplicants
 } = require("../controllers/companyController");
 
-// Company Registration
+// Public Routes
 router.post("/register", registerCompany);
-
-// Company Login
 router.post("/login", loginCompany);
+
+// Protected Route
+router.get("/applicants/:id", verifyToken, getApplicants);
 
 module.exports = router;
