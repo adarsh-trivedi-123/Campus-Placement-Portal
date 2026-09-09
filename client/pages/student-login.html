@@ -4,82 +4,306 @@
 <head>
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Student Login</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Student Login | Campus Placement Portal</title>
 
-    <link rel="stylesheet" href="../css/style.css">
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+
+    <style>
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eaf2ff,
+                    #f8fbff
+                );
+
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        .auth-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 25px 15px;
+        }
+
+        .auth-card {
+            width: 100%;
+            max-width: 460px;
+
+            border: none;
+            border-radius: 20px;
+
+            background: white;
+
+            box-shadow:
+                0 15px 45px rgba(31, 41, 55, 0.12);
+
+            overflow: hidden;
+        }
+
+        .auth-header {
+            padding: 30px 25px;
+
+            text-align: center;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0d6efd,
+                    #084298
+                );
+        }
+
+        .auth-icon {
+            width: 62px;
+            height: 62px;
+
+            margin: 0 auto 15px;
+
+            border-radius: 17px;
+
+            background:
+                rgba(255,255,255,0.17);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 29px;
+        }
+
+        .auth-header h1 {
+            font-size: 1.55rem;
+            font-weight: 700;
+            margin: 0 0 5px;
+        }
+
+        .auth-header p {
+            margin: 0;
+            font-size: 0.88rem;
+            opacity: 0.85;
+        }
+
+        .auth-body {
+            padding: 30px;
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .form-control {
+            min-height: 46px;
+
+            border-radius: 9px;
+            border: 1px solid #dbe1ea;
+
+            padding: 10px 13px;
+        }
+
+        .form-control:focus {
+            border-color: #0d6efd;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(13,110,253,0.10);
+        }
+
+        .login-btn {
+            min-height: 47px;
+
+            border: none;
+            border-radius: 9px;
+
+            font-weight: 700;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0d6efd,
+                    #084298
+                );
+        }
+
+        .register-text {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        .register-text a {
+            color: #0d6efd;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .register-text a:hover {
+            text-decoration: underline;
+        }
+
+        .portal-text {
+            text-align: center;
+
+            margin-top: 20px;
+
+            color: #9ca3af;
+
+            font-size: 0.78rem;
+        }
+
+        @media (max-width: 480px) {
+
+            .auth-body {
+                padding: 23px;
+            }
+
+            .auth-header {
+                padding: 25px 20px;
+            }
+
+        }
+
+    </style>
 
 </head>
 
-<body class="bg-light">
 
-<div class="container">
+<body>
 
-    <div class="row justify-content-center align-items-center vh-100">
 
-        <div class="col-lg-5">
+    <div class="auth-container">
 
-            <div class="card shadow-lg border-0 rounded-4">
+        <div class="auth-card">
 
-                <div class="card-header bg-primary text-white text-center">
 
-                    <h2 class="py-2">
+            <!-- HEADER -->
 
-                        Student Login
+            <div class="auth-header">
 
-                    </h2>
+                <div class="auth-icon">
+
+                    <i class="bi bi-mortarboard-fill"></i>
 
                 </div>
 
-                <div class="card-body p-4">
+                <h1>
+                    Student Login
+                </h1>
 
-                    <form id="loginForm">
+                <p>
+                    Access your placement dashboard
+                </p>
 
-                        <div class="mb-3">
+            </div>
 
-                            <label>Email</label>
 
-                            <input
-                                type="email"
-                                id="email"
-                                class="form-control"
-                                required>
+            <!-- BODY -->
 
-                        </div>
+            <div class="auth-body">
 
-                        <div class="mb-4">
+                <form id="studentLoginForm">
 
-                            <label>Password</label>
 
-                            <input
-                                type="password"
-                                id="password"
-                                class="form-control"
-                                required>
+                    <!-- EMAIL -->
 
-                        </div>
+                    <div class="mb-3">
 
-                        <button
-                            class="btn btn-primary w-100">
+                        <label
+                            for="email"
+                            class="form-label">
 
-                            Login
+                            Email Address
 
-                        </button>
+                        </label>
 
-                    </form>
-
-                    <div class="text-center mt-3">
-
-                        <a href="student-register.html">
-
-                            Don't have an account?
-
-                        </a>
+                        <input
+                            type="email"
+                            id="email"
+                            class="form-control"
+                            placeholder="Enter your email"
+                            autocomplete="email"
+                            required>
 
                     </div>
+
+
+                    <!-- PASSWORD -->
+
+                    <div class="mb-4">
+
+                        <label
+                            for="password"
+                            class="form-label">
+
+                            Password
+
+                        </label>
+
+                        <input
+                            type="password"
+                            id="password"
+                            class="form-control"
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                            required>
+
+                    </div>
+
+
+                    <!-- LOGIN -->
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary login-btn w-100">
+
+                        <i class="bi bi-box-arrow-in-right me-2"></i>
+
+                        Login
+
+                    </button>
+
+
+                </form>
+
+
+                <div
+                    class="text-center register-text mt-4">
+
+                    Don't have an account?
+
+                    <a href="student-register.html">
+                        Register
+                    </a>
+
+                </div>
+
+
+                <div class="portal-text">
+
+                    <i class="bi bi-shield-check me-1"></i>
+
+                    Campus Placement Portal
 
                 </div>
 
@@ -89,9 +313,10 @@
 
     </div>
 
-</div>
 
-<script src="../js/login.js"></script>
+    <!-- EXISTING JS -->
+
+    <script src="../js/student-login.js"></script>
 
 </body>
 

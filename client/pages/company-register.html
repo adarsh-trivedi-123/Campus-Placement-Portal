@@ -4,103 +4,355 @@
 <head>
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Company Register</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Company Registration | Campus Placement Portal</title>
 
-    <link rel="stylesheet" href="../css/style.css">
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+
+    <style>
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eaf2ff,
+                    #f8fbff
+                );
+
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        .auth-container {
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 35px 15px;
+        }
+
+        .auth-card {
+            width: 100%;
+            max-width: 570px;
+
+            border: none;
+            border-radius: 20px;
+
+            background: white;
+
+            box-shadow:
+                0 15px 45px rgba(31,41,55,0.12);
+
+            overflow: hidden;
+        }
+
+        .auth-header {
+            padding: 28px 25px;
+
+            text-align: center;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0d6efd,
+                    #084298
+                );
+        }
+
+        .auth-icon {
+            width: 60px;
+            height: 60px;
+
+            margin: 0 auto 14px;
+
+            border-radius: 16px;
+
+            background:
+                rgba(255,255,255,0.17);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 28px;
+        }
+
+        .auth-header h1 {
+            margin: 0 0 5px;
+
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .auth-header p {
+            margin: 0;
+
+            font-size: 0.87rem;
+
+            opacity: 0.85;
+        }
+
+        .auth-body {
+            padding: 30px;
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .form-control {
+            min-height: 45px;
+
+            border-radius: 9px;
+
+            border: 1px solid #dbe1ea;
+
+            padding: 10px 13px;
+        }
+
+        .form-control:focus {
+            border-color: #0d6efd;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(13,110,253,0.10);
+        }
+
+        .register-btn {
+            min-height: 47px;
+
+            border: none;
+            border-radius: 9px;
+
+            font-weight: 700;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0d6efd,
+                    #084298
+                );
+        }
+
+        .login-text {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        .login-text a {
+            color: #0d6efd;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .login-text a:hover {
+            text-decoration: underline;
+        }
+
+        .portal-text {
+            text-align: center;
+
+            margin-top: 20px;
+
+            color: #9ca3af;
+
+            font-size: 0.78rem;
+        }
+
+        @media (max-width: 576px) {
+
+            .auth-body {
+                padding: 23px;
+            }
+
+            .auth-header {
+                padding: 25px 20px;
+            }
+
+        }
+
+    </style>
 
 </head>
 
-<body class="bg-light">
 
-<div class="container">
+<body>
 
-    <div class="row justify-content-center align-items-center" style="min-height:100vh;">
 
-        <div class="col-md-6">
+    <div class="auth-container">
 
-            <div class="card shadow-lg">
+        <div class="auth-card">
 
-                <div class="card-header bg-primary text-white text-center">
 
-                    <h3>🏢 Company Registration</h3>
+            <!-- HEADER -->
+
+            <div class="auth-header">
+
+                <div class="auth-icon">
+
+                    <i class="bi bi-building-add"></i>
 
                 </div>
 
-                <div class="card-body">
+                <h1>
+                    Company Registration
+                </h1>
 
-                    <form id="companyRegisterForm">
+                <p>
+                    Register your organization for campus placements
+                </p>
 
-                        <div class="mb-3">
+            </div>
 
-                            <label>Company Name</label>
 
-                            <input
-                                type="text"
-                                id="company_name"
-                                class="form-control"
-                                required>
+            <!-- BODY -->
 
-                        </div>
+            <div class="auth-body">
 
-                        <div class="mb-3">
+                <form id="companyRegisterForm">
 
-                            <label>Email</label>
 
-                            <input
-                                type="email"
-                                id="email"
-                                class="form-control"
-                                required>
+                    <!-- COMPANY NAME -->
 
-                        </div>
+                    <div class="mb-3">
 
-                        <div class="mb-3">
+                        <label
+                            for="company_name"
+                            class="form-label">
 
-                            <label>Password</label>
+                            Company Name
 
-                            <input
-                                type="password"
-                                id="password"
-                                class="form-control"
-                                required>
+                        </label>
 
-                        </div>
-
-                        <div class="mb-3">
-
-                            <label>Location</label>
-
-                            <input
-                                type="text"
-                                id="location"
-                                class="form-control"
-                                required>
-
-                        </div>
-
-                        <button class="btn btn-primary w-100">
-
-                            Register
-
-                        </button>
-
-                    </form>
-
-                    <div class="text-center mt-3">
-
-                        Already Registered?
-
-                        <a href="company-login.html">
-
-                            Login Here
-
-                        </a>
+                        <input
+                            type="text"
+                            id="company_name"
+                            class="form-control"
+                            placeholder="Enter company name"
+                            required>
 
                     </div>
+
+
+                    <!-- EMAIL -->
+
+                    <div class="mb-3">
+
+                        <label
+                            for="email"
+                            class="form-label">
+
+                            Company Email
+
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            class="form-control"
+                            placeholder="Enter company email"
+                            autocomplete="email"
+                            required>
+
+                    </div>
+
+
+                    <!-- PASSWORD -->
+
+                    <div class="mb-3">
+
+                        <label
+                            for="password"
+                            class="form-label">
+
+                            Password
+
+                        </label>
+
+                        <input
+                            type="password"
+                            id="password"
+                            class="form-control"
+                            placeholder="Create a password"
+                            autocomplete="new-password"
+                            required>
+
+                    </div>
+
+
+                    <!-- LOCATION -->
+
+                    <div class="mb-4">
+
+                        <label
+                            for="location"
+                            class="form-label">
+
+                            Company Location
+
+                        </label>
+
+                        <input
+                            type="text"
+                            id="location"
+                            class="form-control"
+                            placeholder="e.g. Lucknow"
+                            required>
+
+                    </div>
+
+
+                    <!-- REGISTER -->
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary register-btn w-100">
+
+                        <i class="bi bi-building-add me-2"></i>
+
+                        Register Company
+
+                    </button>
+
+
+                </form>
+
+
+                <div
+                    class="text-center login-text mt-4">
+
+                    Already registered?
+
+                    <a href="company-login.html">
+                        Login
+                    </a>
+
+                </div>
+
+
+                <div class="portal-text">
+
+                    <i class="bi bi-shield-check me-1"></i>
+
+                    Campus Placement Portal
 
                 </div>
 
@@ -110,9 +362,10 @@
 
     </div>
 
-</div>
 
-<script src="../js/company-register.js"></script>
+    <!-- EXISTING JS -->
+
+    <script src="../js/company-register.js"></script>
 
 </body>
 

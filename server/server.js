@@ -7,6 +7,7 @@ const studentRoutes = require("./routes/studentRoutes");
 const companyRoutes=require("./routes/companyRoutes");
 const jobRoutes = require("./routes/jobRoutes");
 const applicationRoutes = require("./routes/applicationRoutes");
+const adminRoutes = require("./routes/adminRoutes");
 
 const app = express();
 const PORT = 5000;
@@ -21,6 +22,7 @@ app.use("/api/students", studentRoutes);
 app.use("/api/companies", companyRoutes);
 app.use("/api/jobs", jobRoutes);
 app.use("/api/applications", applicationRoutes);
+app.use("/api/admin", adminRoutes);
 
 // =======================
 // Serve Frontend

@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard | Campus Placement Portal</title>
+
+    <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f7fb;
+            color: #172b4d;
+        }
+
+        /* =========================================
+           SIDEBAR
+        ========================================= */
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 100vh;
+            background: linear-gradient(180deg, #084298, #0d6efd);
+            color: white;
+            z-index: 1000;
+            transition: 0.3s ease;
+            overflow-y: auto;
+        }
+
+        .sidebar-brand {
+            padding: 25px 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+        }
+
+        .sidebar-brand h4 {
+            margin: 0;
+            font-weight: 800;
+            font-size: 20px;
+        }
+
+        .sidebar-brand small {
+            opacity: 0.75;
+        }
+
+        .sidebar-menu {
+            padding: 25px 15px;
+        }
+
+        .menu-title {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.6;
+            padding: 0 12px 10px;
+        }
+
+        .sidebar-menu button {
+            width: 100%;
+            border: none;
+            background: transparent;
+            color: rgba(255,255,255,0.85);
+            text-align: left;
+            padding: 13px 15px;
+            border-radius: 10px;
+            margin-bottom: 6px;
+            font-size: 15px;
+            transition: 0.25s;
+        }
+
+        .sidebar-menu button:hover,
+        .sidebar-menu button.active {
+            background: rgba(255,255,255,0.16);
+            color: white;
+            transform: translateX(3px);
+        }
+
+        .sidebar-menu i {
+            width: 25px;
+            font-size: 17px;
+        }
+
+        .sidebar-bottom {
+            position: absolute;
+            bottom: 20px;
+            left: 15px;
+            right: 15px;
+        }
+
+        .logout-side {
+            width: 100%;
+            border: 1px solid rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.08);
+            color: white;
+            padding: 11px;
+            border-radius: 10px;
+        }
+
+        .logout-side:hover {
+            background: rgba(255,255,255,0.18);
+        }
+
+
+        /* =========================================
+           MAIN
+        ========================================= */
+
+        .main-content {
+            margin-left: 250px;
+            min-height: 100vh;
+        }
+
+
+        /* =========================================
+           TOPBAR
+        ========================================= */
+
+        .topbar {
+            height: 75px;
+            background: white;
+            border-bottom: 1px solid #e8ecf3;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+            position: sticky;
+            top: 0;
+            z-index: 900;
+        }
+
+        .page-heading h3 {
+            margin: 0;
+            font-weight: 800;
+            color: #172b4d;
+        }
+
+        .page-heading small {
+            color: #7a869a;
+        }
+
+        .admin-profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .admin-avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: #e8f1ff;
+            color: #0d6efd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 19px;
+        }
+
+        .admin-info {
+            line-height: 1.2;
+        }
+
+        .admin-info strong {
+            display: block;
+            color: #172b4d;
+            font-size: 14px;
+        }
+
+        .admin-info span {
+            color: #8a94a6;
+            font-size: 12px;
+        }
+
+
+        /* =========================================
+           CONTENT
+        ========================================= */
+
+        .dashboard-content {
+            padding: 30px;
+        }
+
+
+        /* =========================================
+           STAT CARDS
+        ========================================= */
+
+        .stat-card {
+            background: white;
+            border: 1px solid #e9edf4;
+            border-radius: 16px;
+            padding: 22px;
+            height: 100%;
+            box-shadow: 0 5px 20px rgba(16,24,40,0.05);
+            transition: 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(16,24,40,0.10);
+        }
+
+        .stat-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .stat-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 23px;
+        }
+
+        .student-stat {
+            background: #e8f1ff;
+            color: #0d6efd;
+        }
+
+        .company-stat {
+            background: #e8f8ef;
+            color: #198754;
+        }
+
+        .job-stat {
+            background: #eee9ff;
+            color: #6f42c1;
+        }
+
+        .application-stat {
+            background: #fff4d6;
+            color: #d99a00;
+        }
+
+        .stat-card h6 {
+            margin-top: 20px;
+            margin-bottom: 5px;
+            color: #667085;
+            font-weight: 600;
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: 800;
+            color: #172b4d;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #98a2b3;
+        }
+
+
+        /* =========================================
+           MANAGEMENT CARDS
+        ========================================= */
+
+        .section-heading {
+            margin-top: 35px;
+            margin-bottom: 18px;
+        }
+
+        .section-heading h4 {
+            font-weight: 800;
+            margin: 0;
+        }
+
+        .section-heading p {
+            color: #7a869a;
+            margin: 5px 0 0;
+        }
+
+        .management-card {
+            background: white;
+            border: 1px solid #e9edf4;
+            border-radius: 16px;
+            padding: 25px;
+            height: 100%;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(16,24,40,0.05);
+            transition: 0.3s;
+        }
+
+        .management-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(16,24,40,0.10);
+        }
+
+        .management-icon {
+            width: 65px;
+            height: 65px;
+            border-radius: 16px;
+            margin: 0 auto 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+        }
+
+        .management-card h5 {
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .management-card p {
+            color: #7a869a;
+            font-size: 14px;
+            min-height: 40px;
+        }
+
+        .management-card button {
+            width: 100%;
+            border-radius: 9px;
+            padding: 10px;
+            font-weight: 600;
+        }
+
+
+        /* =========================================
+           DATA TABLE
+        ========================================= */
+
+        .data-card {
+            background: white;
+            border: 1px solid #e9edf4;
+            border-radius: 16px;
+            margin-top: 35px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(16,24,40,0.05);
+            overflow: hidden;
+        }
+
+        .data-header {
+            padding: 20px 22px;
+            border-bottom: 1px solid #edf0f5;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .data-header h4 {
+            margin: 0;
+            font-weight: 800;
+        }
+
+        .data-header p {
+            margin: 4px 0 0;
+            color: #98a2b3;
+            font-size: 13px;
+        }
+
+        .search-box {
+            width: 230px;
+            position: relative;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 12px;
+            top: 11px;
+            color: #98a2b3;
+        }
+
+        .search-box input {
+            width: 100%;
+            border: 1px solid #d9dee8;
+            border-radius: 9px;
+            padding: 9px 12px 9px 35px;
+            outline: none;
+        }
+
+        .search-box input:focus {
+            border-color: #0d6efd;
+            box-shadow: 0 0 0 3px rgba(13,110,253,0.10);
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        table {
+            margin-bottom: 0 !important;
+        }
+
+        thead th {
+            background: #f8faff !important;
+            color: #667085 !important;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            white-space: nowrap;
+            padding: 14px 16px !important;
+            border-bottom: 1px solid #e9edf4 !important;
+        }
+
+        tbody td {
+            padding: 14px 16px !important;
+            vertical-align: middle;
+            color: #344054;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        tbody tr:hover {
+            background: #f9fbff;
+        }
+
+        .delete-btn {
+            border-radius: 7px;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 6px 10px;
+        }
+
+        .empty-message {
+            text-align: center;
+            padding: 45px !important;
+            color: #98a2b3;
+        }
+
+
+        /* =========================================
+           MOBILE
+        ========================================= */
+
+        .mobile-menu-btn {
+            display: none;
+            border: none;
+            background: #e8f1ff;
+            color: #0d6efd;
+            width: 42px;
+            height: 42px;
+            border-radius: 9px;
+            font-size: 20px;
+        }
+
+        .sidebar-overlay {
+            display: none;
+        }
+
+
+        @media (max-width: 991px) {
+
+            .sidebar {
+                left: -250px;
+            }
+
+            .sidebar.show {
+                left: 0;
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .sidebar-overlay.show {
+                display: block;
+                position: fixed;
+                inset: 0;
+                background: rgba(0,0,0,0.35);
+                z-index: 999;
+            }
+
+            .topbar {
+                padding: 0 20px;
+            }
+
+            .dashboard-content {
+                padding: 20px;
+            }
+
+        }
+
+
+        @media (max-width: 576px) {
+
+            .topbar {
+                height: 68px;
+            }
+
+            .page-heading small {
+                display: none;
+            }
+
+            .admin-info {
+                display: none;
+            }
+
+            .dashboard-content {
+                padding: 15px;
+            }
+
+            .data-header {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .search-box {
+                width: 100%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================
+     SIDEBAR
+========================================= -->
+
+<aside class="sidebar" id="sidebar">
+
+    <div class="sidebar-brand">
+
+        <h4>
+            🎓 Campus Portal
+        </h4>
+
+        <small>
+            Administration Panel
+        </small>
+
+    </div>
+
+
+    <div class="sidebar-menu">
+
+        <div class="menu-title">
+            Dashboard
+        </div>
+
+        <button
+            id="menuDashboard"
+            class="active"
+            onclick="showDashboard()">
+
+            <i class="bi bi-grid-1x2-fill"></i>
+            Dashboard
+
+        </button>
+
+
+        <div class="menu-title mt-4">
+            Management
+        </div>
+
+        <button
+            id="menuStudents"
+            onclick="loadStudents()">
+
+            <i class="bi bi-people-fill"></i>
+            Students
+
+        </button>
+
+
+        <button
+            id="menuCompanies"
+            onclick="loadCompanies()">
+
+            <i class="bi bi-building-fill"></i>
+            Companies
+
+        </button>
+
+
+        <button
+            id="menuJobs"
+            onclick="loadJobs()">
+
+            <i class="bi bi-briefcase-fill"></i>
+            Jobs
+
+        </button>
+
+
+        <button
+            id="menuApplications"
+            onclick="loadApplications()">
+
+            <i class="bi bi-file-earmark-text-fill"></i>
+            Applications
+
+        </button>
+
+    </div>
+
+
+    <div class="sidebar-bottom">
+
+        <button
+            class="logout-side"
+            onclick="logout()">
+
+            <i class="bi bi-box-arrow-right me-2"></i>
+            Logout
+
+        </button>
+
+    </div>
+
+</aside>
+
+
+<div
+    class="sidebar-overlay"
+    id="sidebarOverlay"
+    onclick="toggleSidebar()">
+</div>
+
+
+<!-- =========================================
+     MAIN CONTENT
+========================================= -->
+
+<main class="main-content">
+
+
+    <!-- TOPBAR -->
+
+    <header class="topbar">
+
+        <div class="d-flex align-items-center gap-3">
+
+            <button
+                class="mobile-menu-btn"
+                onclick="toggleSidebar()">
+
+                <i class="bi bi-list"></i>
+
+            </button>
+
+            <div class="page-heading">
+
+                <h3 id="pageTitle">
+                    Dashboard
+                </h3>
+
+                <small>
+                    Manage your campus placement portal
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <div class="admin-profile">
+
+            <div class="admin-avatar">
+
+                <i class="bi bi-person-fill"></i>
+
+            </div>
+
+            <div class="admin-info">
+
+                <strong id="adminName">
+                    Admin
+                </strong>
+
+                <span>
+                    Administrator
+                </span>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- DASHBOARD -->
+
+    <div class="dashboard-content">
+
+
+        <!-- STATISTICS -->
+
+        <div class="row g-4">
+
+
+            <!-- STUDENTS -->
+
+            <div class="col-sm-6 col-xl-3">
+
+                <div class="stat-card">
+
+                    <div class="stat-top">
+
+                        <div class="stat-icon student-stat">
+
+                            <i class="bi bi-people-fill"></i>
+
+                        </div>
+
+                        <i class="bi bi-three-dots text-muted"></i>
+
+                    </div>
+
+                    <h6>
+                        Total Students
+                    </h6>
+
+                    <div
+                        id="studentCount"
+                        class="stat-number">
+
+                        0
+
+                    </div>
+
+                    <div class="stat-label">
+                        Registered students
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- COMPANIES -->
+
+            <div class="col-sm-6 col-xl-3">
+
+                <div class="stat-card">
+
+                    <div class="stat-top">
+
+                        <div class="stat-icon company-stat">
+
+                            <i class="bi bi-building-fill"></i>
+
+                        </div>
+
+                        <i class="bi bi-three-dots text-muted"></i>
+
+                    </div>
+
+                    <h6>
+                        Total Companies
+                    </h6>
+
+                    <div
+                        id="companyCount"
+                        class="stat-number">
+
+                        0
+
+                    </div>
+
+                    <div class="stat-label">
+                        Registered companies
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- JOBS -->
+
+            <div class="col-sm-6 col-xl-3">
+
+                <div class="stat-card">
+
+                    <div class="stat-top">
+
+                        <div class="stat-icon job-stat">
+
+                            <i class="bi bi-briefcase-fill"></i>
+
+                        </div>
+
+                        <i class="bi bi-three-dots text-muted"></i>
+
+                    </div>
+
+                    <h6>
+                        Total Jobs
+                    </h6>
+
+                    <div
+                        id="jobCount"
+                        class="stat-number">
+
+                        0
+
+                    </div>
+
+                    <div class="stat-label">
+                        Active job postings
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- APPLICATIONS -->
+
+            <div class="col-sm-6 col-xl-3">
+
+                <div class="stat-card">
+
+                    <div class="stat-top">
+
+                        <div class="stat-icon application-stat">
+
+                            <i class="bi bi-file-earmark-text-fill"></i>
+
+                        </div>
+
+                        <i class="bi bi-three-dots text-muted"></i>
+
+                    </div>
+
+                    <h6>
+                        Applications
+                    </h6>
+
+                    <div
+                        id="applicationCount"
+                        class="stat-number">
+
+                        0
+
+                    </div>
+
+                    <div class="stat-label">
+                        Total applications
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- MANAGEMENT -->
+
+        <div class="section-heading">
+
+            <h4>
+                Management
+            </h4>
+
+            <p>
+                Access and manage portal records
+            </p>
+
+        </div>
+
+
+        <div class="row g-4">
+
+
+            <!-- STUDENTS -->
+
+            <div class="col-md-6 col-xl-3">
+
+                <div class="management-card">
+
+                    <div
+                        class="management-icon student-stat">
+
+                        <i class="bi bi-people-fill"></i>
+
+                    </div>
+
+                    <h5>
+                        Students
+                    </h5>
+
+                    <p>
+                        View and manage registered students.
+                    </p>
+
+                    <button
+                        class="btn btn-primary"
+                        onclick="loadStudents()">
+
+                        <i class="bi bi-eye me-1"></i>
+                        View Students
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- COMPANIES -->
+
+            <div class="col-md-6 col-xl-3">
+
+                <div class="management-card">
+
+                    <div
+                        class="management-icon company-stat">
+
+                        <i class="bi bi-building-fill"></i>
+
+                    </div>
+
+                    <h5>
+                        Companies
+                    </h5>
+
+                    <p>
+                        View and manage registered companies.
+                    </p>
+
+                    <button
+                        class="btn btn-success"
+                        onclick="loadCompanies()">
+
+                        <i class="bi bi-eye me-1"></i>
+                        View Companies
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- JOBS -->
+
+            <div class="col-md-6 col-xl-3">
+
+                <div class="management-card">
+
+                    <div
+                        class="management-icon job-stat">
+
+                        <i class="bi bi-briefcase-fill"></i>
+
+                    </div>
+
+                    <h5>
+                        Jobs
+                    </h5>
+
+                    <p>
+                        Monitor all posted job opportunities.
+                    </p>
+
+                    <button
+                        class="btn btn-dark"
+                        onclick="loadJobs()">
+
+                        <i class="bi bi-eye me-1"></i>
+                        View Jobs
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- APPLICATIONS -->
+
+            <div class="col-md-6 col-xl-3">
+
+                <div class="management-card">
+
+                    <div
+                        class="management-icon application-stat">
+
+                        <i class="bi bi-file-earmark-text-fill"></i>
+
+                    </div>
+
+                    <h5>
+                        Applications
+                    </h5>
+
+                    <p>
+                        Monitor all submitted applications.
+                    </p>
+
+                    <button
+                        class="btn btn-warning"
+                        onclick="loadApplications()">
+
+                        <i class="bi bi-eye me-1"></i>
+                        View Applications
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- DATA TABLE -->
+
+        <div class="data-card">
+
+            <div class="data-header">
+
+                <div>
+
+                    <h4 id="tableTitle">
+                        Management
+                    </h4>
+
+                    <p id="tableSubtitle">
+                        Select a section above to view records.
+                    </p>
+
+                </div>
+
+
+                <div class="search-box">
+
+                    <i class="bi bi-search"></i>
+
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Search records..."
+                        onkeyup="filterTable()">
+
+                </div>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table
+                    class="table table-hover align-middle">
+
+                    <thead id="tableHead">
+                    </thead>
+
+                    <tbody id="dataTable">
+
+                        <tr>
+
+                            <td
+                                colspan="10"
+                                class="empty-message">
+
+                                <i class="bi bi-table fs-2 d-block mb-2"></i>
+
+                                Select Students, Companies, Jobs or
+                                Applications to view data.
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</main>
+
+
+<script src="../js/admin-dashboard.js"></script>
+
+</body>
+
+</html>

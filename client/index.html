@@ -2,26 +2,737 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Campus Placement Portal</title>
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+        rel="stylesheet">
 
     <!-- Bootstrap Icons -->
-    <link rel="stylesheet"
+    <link
+        rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
+
+    <style>
+
+        /* =========================================
+           GENERAL
+        ========================================= */
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            overflow-x: hidden;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f8faff;
+        }
+
+        .section-padding {
+            padding: 75px 0;
+        }
+
+        .section-title {
+            font-weight: 800;
+            color: #172b4d;
+            display: inline-block;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: #0d6efd;
+            border-radius: 20px;
+            margin: 10px auto 0;
+        }
+
+        .section-subtitle {
+            max-width: 650px;
+            margin: 15px auto 0;
+            color: #6c757d;
+        }
+
+
+        /* =========================================
+           NAVBAR
+        ========================================= */
+
+        .main-navbar {
+            background: rgba(13, 110, 253, 0.97);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .navbar-brand {
+            font-size: 1.2rem;
+        }
+
+        .nav-link {
+            color: white !important;
+            font-weight: 500;
+            margin-left: 7px;
+            transition: 0.3s;
+        }
+
+        .nav-link:hover {
+            color: #ffc107 !important;
+        }
+
+        .admin-btn {
+            font-weight: 700;
+            border-radius: 8px;
+            padding: 8px 16px;
+        }
+
+        .dropdown-menu {
+            border: none;
+            border-radius: 12px;
+            padding: 8px;
+        }
+
+        .dropdown-item {
+            border-radius: 8px;
+            padding: 10px 14px;
+        }
+
+        .dropdown-item:hover {
+            background: #eef5ff;
+        }
+
+
+        /* =========================================
+           HERO
+        ========================================= */
+
+        .hero-section {
+            min-height: 88vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #084298,
+                    #0d6efd
+                );
+        }
+
+        .hero-section::before {
+            content: "";
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: rgba(255, 193, 7, 0.12);
+            top: -220px;
+            right: -120px;
+        }
+
+        .hero-section::after {
+            content: "";
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.06);
+            bottom: -180px;
+            left: -100px;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 18px;
+            margin-bottom: 22px;
+            background: rgba(255, 193, 7, 0.18);
+            border: 1px solid rgba(255, 193, 7, 0.45);
+            color: #ffc107;
+            border-radius: 50px;
+            font-weight: 700;
+        }
+
+        .hero-title {
+            font-size: clamp(2.7rem, 5vw, 4.5rem);
+            line-height: 1.08;
+            font-weight: 800;
+        }
+
+        .hero-title span {
+            color: #ffc107;
+        }
+
+        .hero-description {
+            max-width: 600px;
+            color: rgba(255, 255, 255, 0.88);
+            line-height: 1.8;
+            font-size: 1.08rem;
+        }
+
+        .hero-btn {
+            padding: 13px 23px;
+            border-radius: 10px;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .hero-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .hero-image {
+            width: 100%;
+            max-height: 510px;
+            object-fit: contain;
+
+            filter:
+                drop-shadow(
+                    0 20px 30px rgba(0, 0, 0, 0.22)
+                );
+
+            animation: floating 4s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .hero-features {
+            margin-top: 25px;
+        }
+
+        .hero-features span {
+            margin-right: 25px;
+            color: white;
+        }
+
+        .hero-features i {
+            color: #ffc107;
+            margin-right: 5px;
+        }
+
+
+        /* =========================================
+           ROLE CARDS
+        ========================================= */
+
+        .role-card {
+            height: 100%;
+            border: none;
+            border-radius: 20px;
+            background: white;
+
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, 0.08);
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+        .role-card:hover {
+            transform: translateY(-9px);
+
+            box-shadow:
+                0 20px 45px rgba(0, 0, 0, 0.14);
+        }
+
+        .role-icon {
+            width: 85px;
+            height: 85px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            margin: 0 auto 20px;
+
+            border-radius: 50%;
+            font-size: 42px;
+        }
+
+        .student-icon {
+            background: #e8f1ff;
+        }
+
+        .company-icon {
+            background: #e9f9ef;
+        }
+
+        .admin-icon {
+            background: #fff0f0;
+        }
+
+        .role-card h3 {
+            font-weight: 800;
+            color: #172b4d;
+        }
+
+        .role-card p {
+            color: #6c757d;
+            line-height: 1.7;
+            min-height: 80px;
+        }
+
+
+        /* =========================================
+           ABOUT
+        ========================================= */
+
+        .about-image {
+            width: 100%;
+            max-height: 470px;
+            object-fit: contain;
+
+            filter:
+                drop-shadow(
+                    0 15px 25px rgba(0, 0, 0, 0.12)
+                );
+        }
+
+        .about-label {
+            color: #0d6efd;
+            font-weight: 800;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        .about-title {
+            font-size: 2.7rem;
+            font-weight: 800;
+            color: #172b4d;
+        }
+
+        .about-text {
+            color: #6c757d;
+            line-height: 1.8;
+        }
+
+        .about-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .about-list li {
+            margin-bottom: 14px;
+            color: #344563;
+            font-weight: 600;
+        }
+
+        .about-list i {
+            color: #198754;
+            margin-right: 8px;
+        }
+
+
+        /* =========================================
+           STATS
+        ========================================= */
+
+        .stats-section {
+            background:
+                linear-gradient(
+                    135deg,
+                    #0d6efd,
+                    #084298
+                );
+
+            color: white;
+        }
+
+        .stat-box {
+            padding: 25px 15px;
+            border-right:
+                1px solid rgba(255, 255, 255, 0.16);
+        }
+
+        .stat-box:last-child {
+            border-right: none;
+        }
+
+        .stat-icon {
+            color: #ffc107;
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .stat-number {
+            font-size: 2.7rem;
+            font-weight: 800;
+        }
+
+        .stat-label {
+            opacity: 0.85;
+        }
+
+
+        /* =========================================
+           FEATURES
+        ========================================= */
+
+        .features-section {
+            padding-top: 75px !important;
+            padding-bottom: 25px !important;
+            margin-bottom: 0 !important;
+        }
+
+        .feature-card {
+            height: 100%;
+            background: white;
+
+            border: 1px solid #edf1f7;
+            border-radius: 18px;
+
+            padding: 30px 25px;
+
+            box-shadow:
+                0 8px 25px rgba(0, 0, 0, 0.06);
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-7px);
+
+            box-shadow:
+                0 15px 35px rgba(0, 0, 0, 0.11);
+        }
+
+        .feature-icon {
+            width: 65px;
+            height: 65px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            margin-bottom: 20px;
+
+            background: #eaf2ff;
+            color: #0d6efd;
+
+            border-radius: 15px;
+            font-size: 30px;
+        }
+
+        .feature-card h4 {
+            color: #172b4d;
+            font-weight: 750;
+        }
+
+        .feature-card p {
+            color: #6c757d;
+            line-height: 1.7;
+            margin-bottom: 0;
+        }
+
+
+        /* =========================================
+           HOW IT WORKS
+        ========================================= */
+
+        .how-section {
+            padding-top: 25px !important;
+            padding-bottom: 75px !important;
+            margin-top: 0 !important;
+        }
+
+        .how-section .text-center.mb-5 {
+            margin-bottom: 35px !important;
+        }
+
+        .step-card {
+            height: 100%;
+        }
+
+        .step-number {
+            width: 62px;
+            height: 62px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            margin: 0 auto 20px;
+
+            border-radius: 50%;
+
+            background: #0d6efd;
+            color: white;
+
+            font-size: 23px;
+            font-weight: 800;
+
+            box-shadow:
+                0 8px 20px rgba(13, 110, 253, 0.3);
+        }
+
+        .step-card h5 {
+            color: #172b4d;
+            font-weight: 800;
+        }
+
+        .step-card p {
+            color: #6c757d;
+        }
+
+
+        /* =========================================
+           RECRUITERS
+        ========================================= */
+
+        .recruiter {
+            background: white;
+
+            border-radius: 15px;
+
+            padding: 25px 15px;
+
+            font-size: 1.1rem;
+            font-weight: 800;
+
+            color: #344563;
+
+            box-shadow:
+                0 7px 22px rgba(0, 0, 0, 0.07);
+
+            transition: 0.3s;
+        }
+
+        .recruiter:hover {
+            transform: translateY(-5px);
+            color: #0d6efd;
+        }
+
+
+        /* =========================================
+           CTA
+        ========================================= */
+
+        .cta-section {
+            background:
+                linear-gradient(
+                    135deg,
+                    #084298,
+                    #0d6efd
+                );
+        }
+
+        .cta-btn {
+            padding: 13px 22px;
+            border-radius: 10px;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+        }
+
+
+        /* =========================================
+           CONTACT
+        ========================================= */
+
+        .contact-card {
+            height: 100%;
+            background: white;
+
+            border-radius: 18px;
+
+            padding: 35px 20px;
+
+            text-align: center;
+
+            box-shadow:
+                0 8px 25px rgba(0, 0, 0, 0.07);
+
+            transition: 0.3s;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-6px);
+        }
+
+        .contact-icon {
+            font-size: 35px;
+            color: #0d6efd;
+            margin-bottom: 15px;
+        }
+
+        .contact-card h5 {
+            color: #172b4d;
+            font-weight: 800;
+        }
+
+        .contact-card p {
+            color: #6c757d;
+            margin-bottom: 0;
+        }
+
+
+        /* =========================================
+           FOOTER
+        ========================================= */
+
+        footer {
+            background: #101828;
+        }
+
+        footer p,
+        footer li {
+            color: #98a2b3;
+        }
+
+        footer a {
+            color: #98a2b3;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        footer a:hover {
+            color: #ffc107;
+        }
+
+        .footer-social {
+            width: 38px;
+            height: 38px;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            margin-right: 7px;
+
+            border-radius: 50%;
+
+            background: rgba(255, 255, 255, 0.08);
+            color: white;
+        }
+
+        .footer-social:hover {
+            background: #0d6efd;
+            color: white;
+        }
+
+
+        /* =========================================
+           MOBILE
+        ========================================= */
+
+        @media (max-width: 991px) {
+
+            .hero-section {
+                padding: 80px 0;
+            }
+
+            .hero-image {
+                margin-top: 50px;
+                max-height: 400px;
+            }
+
+            .stat-box {
+                border-right: none;
+                border-bottom:
+                    1px solid rgba(255, 255, 255, 0.15);
+            }
+
+            .stat-box:last-child {
+                border-bottom: none;
+            }
+
+        }
+
+
+        @media (max-width: 768px) {
+
+            .section-padding {
+                padding: 60px 0;
+            }
+
+            .features-section {
+                padding-top: 60px !important;
+                padding-bottom: 20px !important;
+            }
+
+            .how-section {
+                padding-top: 20px !important;
+                padding-bottom: 60px !important;
+            }
+
+            .how-section .text-center.mb-5 {
+                margin-bottom: 30px !important;
+            }
+
+            .hero-title {
+                font-size: 2.6rem;
+            }
+
+            .hero-description {
+                font-size: 1rem;
+            }
+
+            .hero-features span {
+                display: block;
+                margin-bottom: 10px;
+            }
+
+            .about-title {
+                font-size: 2.2rem;
+            }
+
+        }
+
+    </style>
+
 </head>
 
-<body>
-<!-- ================= NAVBAR START ================= -->
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top shadow">
+<body>
+
+
+<!-- =========================================================
+     NAVBAR
+========================================================= -->
+
+<nav class="navbar navbar-expand-lg navbar-dark main-navbar sticky-top">
 
     <div class="container">
 
@@ -29,10 +740,11 @@
             🎓 Campus Placement Portal
         </a>
 
-        <button class="navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarNav">
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav">
 
             <span class="navbar-toggler-icon"></span>
 
@@ -40,54 +752,79 @@
 
         <div class="collapse navbar-collapse" id="navbarNav">
 
-            <ul class="navbar-nav ms-auto">
+            <ul class="navbar-nav ms-auto align-items-lg-center">
 
                 <li class="nav-item">
-                    <a class="nav-link active" href="index.html">Home</a>
+                    <a class="nav-link active" href="index.html">
+                        Home
+                    </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#about">About</a>
+                    <a class="nav-link" href="#about">
+                        About
+                    </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="pages/jobs.html">Jobs</a>
+                    <a class="nav-link" href="pages/jobs.html">
+                        Jobs
+                    </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#contact">Contact</a>
+                    <a class="nav-link" href="#how-it-works">
+                        How It Works
+                    </a>
                 </li>
 
-                <!-- Login Dropdown -->
+                <li class="nav-item">
+                    <a class="nav-link" href="#contact">
+                        Contact
+                    </a>
+                </li>
 
-                <li class="nav-item dropdown">
+                <!-- LOGIN -->
+                <li class="nav-item dropdown ms-lg-2">
 
-                    <a class="nav-link dropdown-toggle"
-                       href="#"
-                       role="button"
-                       data-bs-toggle="dropdown">
+                    <a
+                        class="nav-link dropdown-toggle"
+                        href="#"
+                        role="button"
+                        data-bs-toggle="dropdown">
 
+                        <i class="bi bi-box-arrow-in-right"></i>
                         Login
 
                     </a>
 
-                    <ul class="dropdown-menu">
+                    <ul class="dropdown-menu dropdown-menu-end shadow">
 
                         <li>
-                            <a class="dropdown-item"
-                               href="pages/student-login.html">
-
+                            <a
+                                class="dropdown-item"
+                                href="pages/student-login.html">
                                 👨‍🎓 Student Login
-
                             </a>
                         </li>
 
                         <li>
-                            <a class="dropdown-item"
-                               href="pages/company-login.html">
-
+                            <a
+                                class="dropdown-item"
+                                href="pages/company-login.html">
                                 🏢 Company Login
+                            </a>
+                        </li>
 
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li>
+                            <a
+                                class="dropdown-item fw-bold text-danger"
+                                href="pages/admin-login.html">
+                                🔐 Admin Login
                             </a>
                         </li>
 
@@ -95,40 +832,53 @@
 
                 </li>
 
-                <!-- Register Dropdown -->
 
-                <li class="nav-item dropdown">
+                <!-- REGISTER -->
+                <li class="nav-item dropdown ms-lg-2">
 
-                    <a class="nav-link dropdown-toggle"
-                       href="#"
-                       role="button"
-                       data-bs-toggle="dropdown">
+                    <a
+                        class="nav-link dropdown-toggle"
+                        href="#"
+                        role="button"
+                        data-bs-toggle="dropdown">
 
                         Register
 
                     </a>
 
-                    <ul class="dropdown-menu">
+                    <ul class="dropdown-menu dropdown-menu-end shadow">
 
                         <li>
-                            <a class="dropdown-item"
-                               href="pages/student-register.html">
-
+                            <a
+                                class="dropdown-item"
+                                href="pages/student-register.html">
                                 👨‍🎓 Student Register
-
                             </a>
                         </li>
 
                         <li>
-                            <a class="dropdown-item"
-                               href="pages/company-register.html">
-
+                            <a
+                                class="dropdown-item"
+                                href="pages/company-register.html">
                                 🏢 Company Register
-
                             </a>
                         </li>
 
                     </ul>
+
+                </li>
+
+
+                <!-- ADMIN -->
+                <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+
+                    <a
+                        href="pages/admin-login.html"
+                        class="btn btn-warning admin-btn">
+
+                        🔐 Admin
+
+                    </a>
 
                 </li>
 
@@ -140,61 +890,257 @@
 
 </nav>
 
-    <!-- ================= HERO SECTION ================= -->
 
-    <section class="hero">
+<!-- =========================================================
+     HERO
+========================================================= -->
 
-        <div class="container">
+<section class="hero-section">
 
-            <div class="row align-items-center" style="min-height:85vh;">
+    <div class="container">
 
-                <div class="col-lg-6">
+        <div
+            class="row align-items-center"
+            style="min-height: 88vh;">
 
-                    <span class="badge bg-warning text-dark px-3 py-2 mb-3">
-                        Campus Recruitment Made Easy
+            <div class="col-lg-6 hero-content text-white">
+
+                <span class="hero-badge">
+
+                    <i class="bi bi-rocket-takeoff-fill"></i>
+
+                    Campus Recruitment Made Easy
+
+                </span>
+
+                <h1 class="hero-title mb-4">
+
+                    Build Your Career.
+                    <br>
+
+                    <span>
+                        Find Your Dream Job.
                     </span>
 
-                    <h1 class="display-4 fw-bold mb-4">
+                </h1>
 
-                        Build Your Career
+                <p class="hero-description mb-4">
 
-                        <span class="text-warning">
+                    Connect students with leading companies,
+                    discover exciting career opportunities
+                    and manage campus recruitment from one
+                    powerful platform.
 
-                            With Campus Placement Portal
+                </p>
 
-                        </span>
+                <div class="d-flex flex-wrap gap-3">
 
-                    </h1>
+                    <a
+                        href="pages/student-login.html"
+                        class="btn btn-warning btn-lg hero-btn">
 
-                    <p class="lead text-white mb-4">
-
-                        A modern platform where students can discover opportunities,
-                        companies can hire top talent, and colleges can manage
-                        campus placements efficiently.
-
-                    </p>
-
-                    <a href="#"
-                        class="btn btn-warning btn-lg me-3">
-
-                        Apply Now
+                        👨‍🎓 Start Your Career
 
                     </a>
 
-                    <a href="#"
-                        class="btn btn-outline-light btn-lg">
+                    <a
+                        href="pages/jobs.html"
+                        class="btn btn-outline-light btn-lg hero-btn">
 
-                        Explore Jobs
+                        💼 Explore Jobs
 
                     </a>
 
                 </div>
 
-                <div class="col-lg-6 text-center">
+                <div class="hero-features">
 
-                    <img src="images/hero.png"
-                        class="img-fluid"
-                        alt="Hero Image">
+                    <span>
+                        <i class="bi bi-check-circle-fill"></i>
+                        Easy Application
+                    </span>
+
+                    <span>
+                        <i class="bi bi-check-circle-fill"></i>
+                        Secure Platform
+                    </span>
+
+                    <span>
+                        <i class="bi bi-check-circle-fill"></i>
+                        Track Applications
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-6 hero-image-wrapper">
+
+                <img
+                    src="images/hero.png"
+                    class="img-fluid hero-image"
+                    alt="Campus Placement">
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     USER ROLES
+========================================================= -->
+
+<section class="section-padding bg-light">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <h2 class="section-title">
+                Choose Your Role
+            </h2>
+
+            <p class="section-subtitle">
+                Everything you need is just one click away.
+            </p>
+
+        </div>
+
+
+        <div class="row g-4">
+
+            <!-- STUDENT -->
+
+            <div class="col-lg-4">
+
+                <div class="role-card">
+
+                    <div class="card-body text-center p-5">
+
+                        <div class="role-icon student-icon">
+                            👨‍🎓
+                        </div>
+
+                        <h3>
+                            Student
+                        </h3>
+
+                        <p>
+
+                            Create your profile, explore job
+                            opportunities, apply for jobs and
+                            track your application status.
+
+                        </p>
+
+                        <a
+                            href="pages/student-login.html"
+                            class="btn btn-primary">
+
+                            Student Login
+
+                        </a>
+
+                        <a
+                            href="pages/student-register.html"
+                            class="btn btn-outline-primary ms-2">
+
+                            Register
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- COMPANY -->
+
+            <div class="col-lg-4">
+
+                <div class="role-card">
+
+                    <div class="card-body text-center p-5">
+
+                        <div class="role-icon company-icon">
+                            🏢
+                        </div>
+
+                        <h3>
+                            Company
+                        </h3>
+
+                        <p>
+
+                            Post job opportunities, view student
+                            applications and shortlist the best
+                            candidates.
+
+                        </p>
+
+                        <a
+                            href="pages/company-login.html"
+                            class="btn btn-success">
+
+                            Company Login
+
+                        </a>
+
+                        <a
+                            href="pages/company-register.html"
+                            class="btn btn-outline-success ms-2">
+
+                            Register
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ADMIN -->
+
+            <div class="col-lg-4">
+
+                <div class="role-card">
+
+                    <div class="card-body text-center p-5">
+
+                        <div class="role-icon admin-icon">
+                            🔐
+                        </div>
+
+                        <h3>
+                            Administrator
+                        </h3>
+
+                        <p>
+
+                            Manage students, companies, jobs,
+                            applications and placement statistics
+                            from the admin dashboard.
+
+                        </p>
+
+                        <a
+                            href="pages/admin-login.html"
+                            class="btn btn-danger">
+
+                            Admin Login
+
+                        </a>
+
+                    </div>
 
                 </div>
 
@@ -202,68 +1148,685 @@
 
         </div>
 
-    </section>
-    <!-- ================= FEATURES SECTION ================= -->
+    </div>
 
-<section class="py-5 bg-light">
+</section>
+
+
+<!-- =========================================================
+     ABOUT
+========================================================= -->
+
+<section
+    id="about"
+    class="section-padding bg-white">
+
+    <div class="container">
+
+        <div class="row align-items-center g-5">
+
+            <div class="col-lg-6 text-center">
+
+                <img
+                    src="images/about.png"
+                    class="img-fluid about-image"
+                    alt="About Campus Placement">
+
+            </div>
+
+            <div class="col-lg-6">
+
+                <div class="about-label">
+                    ABOUT OUR PLATFORM
+                </div>
+
+                <h2 class="about-title mt-2">
+
+                    One Platform.
+                    <br>
+                    Multiple Opportunities.
+
+                </h2>
+
+                <p class="about-text mt-4">
+
+                    The Campus Placement Portal is a web-based
+                    platform designed to connect students,
+                    companies and placement administrators
+                    in one place.
+
+                </p>
+
+                <p class="about-text">
+
+                    Students can discover jobs and apply online.
+                    Companies can post vacancies and manage
+                    applicants. Administrators can monitor and
+                    manage the complete placement process.
+
+                </p>
+
+                <ul class="about-list mt-4">
+
+                    <li>
+                        <i class="bi bi-check-circle-fill"></i>
+                        Easy to Use
+                    </li>
+
+                    <li>
+                        <i class="bi bi-check-circle-fill"></i>
+                        Secure Login
+                    </li>
+
+                    <li>
+                        <i class="bi bi-check-circle-fill"></i>
+                        Job Tracking
+                    </li>
+
+                    <li>
+                        <i class="bi bi-check-circle-fill"></i>
+                        Admin Control
+                    </li>
+
+                </ul>
+
+                <a
+                    href="pages/jobs.html"
+                    class="btn btn-primary">
+
+                    Explore Opportunities →
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     STATISTICS
+========================================================= -->
+
+<section class="section-padding stats-section">
 
     <div class="container">
 
         <div class="text-center mb-5">
-            <h2 class="fw-bold">Our Features</h2>
-            <p class="text-muted">
-                Everything you need for a successful campus recruitment process.
+
+            <h2 class="fw-bold">
+                Placement at a Glance
+            </h2>
+
+            <p class="opacity-75">
+                Growing opportunities for students and recruiters.
             </p>
+
         </div>
+
+        <div class="row text-center">
+
+            <div class="col-md-3 col-6 stat-box">
+
+                <div class="stat-icon">
+                    <i class="bi bi-people-fill"></i>
+                </div>
+
+                <div class="stat-number">
+                    500+
+                </div>
+
+                <div class="stat-label">
+                    Students
+                </div>
+
+            </div>
+
+
+            <div class="col-md-3 col-6 stat-box">
+
+                <div class="stat-icon">
+                    <i class="bi bi-building-fill"></i>
+                </div>
+
+                <div class="stat-number">
+                    120+
+                </div>
+
+                <div class="stat-label">
+                    Companies
+                </div>
+
+            </div>
+
+
+            <div class="col-md-3 col-6 stat-box">
+
+                <div class="stat-icon">
+                    <i class="bi bi-briefcase-fill"></i>
+                </div>
+
+                <div class="stat-number">
+                    350+
+                </div>
+
+                <div class="stat-label">
+                    Job Openings
+                </div>
+
+            </div>
+
+
+            <div class="col-md-3 col-6 stat-box">
+
+                <div class="stat-icon">
+                    <i class="bi bi-graph-up-arrow"></i>
+                </div>
+
+                <div class="stat-number">
+                    90%
+                </div>
+
+                <div class="stat-label">
+                    Placement Rate
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     POWERFUL FEATURES
+========================================================= -->
+
+<section class="features-section section-padding bg-light">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <h2 class="section-title">
+                Powerful Features
+            </h2>
+
+            <p class="section-subtitle">
+                Everything required to manage campus recruitment.
+            </p>
+
+        </div>
+
+
+        <div class="row g-4">
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        <i class="bi bi-person-plus-fill"></i>
+                    </div>
+
+                    <h4>
+                        Student Registration
+                    </h4>
+
+                    <p>
+                        Students can create their profile and
+                        become eligible for placement opportunities.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        <i class="bi bi-building"></i>
+                    </div>
+
+                    <h4>
+                        Company Portal
+                    </h4>
+
+                    <p>
+                        Companies can register and manage
+                        recruitment activities.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        <i class="bi bi-briefcase-fill"></i>
+                    </div>
+
+                    <h4>
+                        Job Posting
+                    </h4>
+
+                    <p>
+                        Recruiters can post job openings with
+                        eligibility and salary details.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        <i class="bi bi-search"></i>
+                    </div>
+
+                    <h4>
+                        Easy Job Search
+                    </h4>
+
+                    <p>
+                        Find suitable opportunities based on
+                        job title, company and location.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        <i class="bi bi-bar-chart-line-fill"></i>
+                    </div>
+
+                    <h4>
+                        Placement Analytics
+                    </h4>
+
+                    <p>
+                        Administrators can monitor important
+                        placement statistics.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        <i class="bi bi-shield-check"></i>
+                    </div>
+
+                    <h4>
+                        Secure Platform
+                    </h4>
+
+                    <p>
+                        Authentication and authorization help
+                        protect user accounts and data.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     HOW IT WORKS
+========================================================= -->
+
+<section
+    id="how-it-works"
+    class="how-section section-padding bg-white">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <h2 class="section-title">
+                How It Works
+            </h2>
+
+            <p class="section-subtitle">
+                Simple steps from registration to placement.
+            </p>
+
+        </div>
+
+
+        <div class="row g-4 text-center">
+
+            <div class="col-md-3">
+
+                <div class="step-card">
+
+                    <div class="step-number">
+                        1
+                    </div>
+
+                    <h5>
+                        Register
+                    </h5>
+
+                    <p>
+                        Create your student or company account.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-3">
+
+                <div class="step-card">
+
+                    <div class="step-number">
+                        2
+                    </div>
+
+                    <h5>
+                        Explore
+                    </h5>
+
+                    <p>
+                        Browse available jobs and recruitment
+                        opportunities.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-3">
+
+                <div class="step-card">
+
+                    <div class="step-number">
+                        3
+                    </div>
+
+                    <h5>
+                        Apply
+                    </h5>
+
+                    <p>
+                        Apply for suitable jobs with one click.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-3">
+
+                <div class="step-card">
+
+                    <div class="step-number">
+                        4
+                    </div>
+
+                    <h5>
+                        Get Selected
+                    </h5>
+
+                    <p>
+                        Track your application and placement status.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     TOP RECRUITERS
+========================================================= -->
+
+<section class="section-padding bg-light">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <h2 class="section-title">
+                Top Recruiters
+            </h2>
+
+            <p class="section-subtitle">
+                Companies looking for talented candidates.
+            </p>
+
+        </div>
+
+
+        <div class="row g-4 text-center">
+
+            <div class="col-6 col-md-4 col-lg-2">
+                <div class="recruiter">
+                    TCS
+                </div>
+            </div>
+
+            <div class="col-6 col-md-4 col-lg-2">
+                <div class="recruiter">
+                    Infosys
+                </div>
+            </div>
+
+            <div class="col-6 col-md-4 col-lg-2">
+                <div class="recruiter">
+                    Wipro
+                </div>
+            </div>
+
+            <div class="col-6 col-md-4 col-lg-2">
+                <div class="recruiter">
+                    HCL
+                </div>
+            </div>
+
+            <div class="col-6 col-md-4 col-lg-2">
+                <div class="recruiter">
+                    Accenture
+                </div>
+            </div>
+
+            <div class="col-6 col-md-4 col-lg-2">
+                <div class="recruiter">
+                    Capgemini
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     CTA
+========================================================= -->
+
+<section class="cta-section section-padding text-white">
+
+    <div class="container text-center">
+
+        <h2 class="fw-bold display-6">
+            Ready to Start Your Placement Journey?
+        </h2>
+
+        <p class="lead mt-3 opacity-75">
+
+            Join the Campus Placement Portal today and
+            discover your next opportunity.
+
+        </p>
+
+
+        <div
+            class="d-flex justify-content-center flex-wrap gap-3 mt-4">
+
+            <a
+                href="pages/student-register.html"
+                class="btn btn-warning btn-lg cta-btn">
+
+                👨‍🎓 Register as Student
+
+            </a>
+
+
+            <a
+                href="pages/company-register.html"
+                class="btn btn-outline-light btn-lg cta-btn">
+
+                🏢 Register as Company
+
+            </a>
+
+
+            <a
+                href="pages/admin-login.html"
+                class="btn btn-danger btn-lg cta-btn">
+
+                🔐 Admin Login
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     CONTACT
+========================================================= -->
+
+<section
+    id="contact"
+    class="section-padding bg-white">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <h2 class="section-title">
+                Contact Us
+            </h2>
+
+            <p class="section-subtitle">
+                Have a question? Get in touch with us.
+            </p>
+
+        </div>
+
 
         <div class="row g-4">
 
             <div class="col-md-4">
-                <div class="feature-card text-center p-4">
-                    <i class="bi bi-person-plus-fill feature-icon"></i>
-                    <h4>Student Registration</h4>
-                    <p>Create your profile and apply for jobs easily.</p>
+
+                <div class="contact-card">
+
+                    <div class="contact-icon">
+                        <i class="bi bi-envelope-fill"></i>
+                    </div>
+
+                    <h5>
+                        Email
+                    </h5>
+
+                    <p>
+                        info@placementportal.com
+                    </p>
+
                 </div>
+
             </div>
 
-            <div class="col-md-4">
-                <div class="feature-card text-center p-4">
-                    <i class="bi bi-building feature-icon"></i>
-                    <h4>Company Portal</h4>
-                    <p>Companies can post jobs and hire talented students.</p>
-                </div>
-            </div>
 
             <div class="col-md-4">
-                <div class="feature-card text-center p-4">
-                    <i class="bi bi-file-earmark-arrow-up-fill feature-icon"></i>
-                    <h4>Resume Upload</h4>
-                    <p>Upload your resume and apply instantly.</p>
+
+                <div class="contact-card">
+
+                    <div class="contact-icon">
+                        <i class="bi bi-telephone-fill"></i>
+                    </div>
+
+                    <h5>
+                        Phone
+                    </h5>
+
+                    <p>
+                        +91 9876543210
+                    </p>
+
                 </div>
+
             </div>
 
-            <div class="col-md-4">
-                <div class="feature-card text-center p-4">
-                    <i class="bi bi-search feature-icon"></i>
-                    <h4>Job Search</h4>
-                    <p>Find jobs based on skills and eligibility.</p>
-                </div>
-            </div>
 
             <div class="col-md-4">
-                <div class="feature-card text-center p-4">
-                    <i class="bi bi-bar-chart-line-fill feature-icon"></i>
-                    <h4>Placement Analytics</h4>
-                    <p>Track placement statistics and reports.</p>
-                </div>
-            </div>
 
-            <div class="col-md-4">
-                <div class="feature-card text-center p-4">
-                    <i class="bi bi-shield-check feature-icon"></i>
-                    <h4>Secure Platform</h4>
-                    <p>Safe and reliable system for all users.</p>
+                <div class="contact-card">
+
+                    <div class="contact-icon">
+                        <i class="bi bi-geo-alt-fill"></i>
+                    </div>
+
+                    <h5>
+                        Location
+                    </h5>
+
+                    <p>
+                        Uttar Pradesh, India
+                    </p>
+
                 </div>
+
             </div>
 
         </div>
@@ -272,178 +1835,149 @@
 
 </section>
 
-<!-- ================= ABOUT SECTION ================= -->
 
-<section class="py-5">
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer class="text-white pt-5 pb-3">
 
     <div class="container">
 
-        <div class="row align-items-center">
+        <div class="row g-5">
 
-            <div class="col-lg-6">
-                <h2 class="fw-bold mb-4">About Campus Placement Portal</h2>
+            <div class="col-lg-5">
 
-                <p class="text-muted">
-                    The Campus Placement Portal is a web-based platform that connects
-                    students, companies, and placement officers in one place.
-                    Students can apply for jobs, companies can recruit talented
-                    candidates, and colleges can efficiently manage the placement process.
+                <h4 class="fw-bold">
+                    🎓 Campus Placement Portal
+                </h4>
+
+                <p class="mt-3">
+
+                    Connecting students with opportunities
+                    and companies with talented candidates
+                    through a modern campus recruitment platform.
+
                 </p>
 
-                <a href="#" class="btn btn-primary mt-3">
-                    Learn More
-                </a>
-            </div>
 
-            <div class="col-lg-6 text-center">
-                <img src="images/about.png" class="img-fluid" alt="About Image">
-            </div>
+                <div class="mt-4">
 
-        </div>
+                    <a href="#" class="footer-social">
+                        <i class="bi bi-facebook"></i>
+                    </a>
 
-    </div>
+                    <a href="#" class="footer-social">
+                        <i class="bi bi-instagram"></i>
+                    </a>
 
-</section>
-<!-- ================= STATISTICS SECTION ================= -->
+                    <a href="#" class="footer-social">
+                        <i class="bi bi-linkedin"></i>
+                    </a>
 
-<section class="py-5 bg-primary text-white">
+                    <a href="#" class="footer-social">
+                        <i class="bi bi-twitter-x"></i>
+                    </a>
 
-    <div class="container">
-
-        <div class="row text-center">
-
-            <div class="col-md-3 mb-4">
-                <h1 class="fw-bold">500+</h1>
-                <p>Students</p>
-            </div>
-
-            <div class="col-md-3 mb-4">
-                <h1 class="fw-bold">120+</h1>
-                <p>Companies</p>
-            </div>
-
-            <div class="col-md-3 mb-4">
-                <h1 class="fw-bold">350+</h1>
-                <p>Job Openings</p>
-            </div>
-
-            <div class="col-md-3 mb-4">
-                <h1 class="fw-bold">90%</h1>
-                <p>Placement Rate</p>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- ================= RECRUITERS SECTION ================= -->
-
-<section class="py-5">
-
-    <div class="container">
-
-        <div class="text-center mb-5">
-
-            <h2 class="fw-bold">Our Top Recruiters</h2>
-
-            <p class="text-muted">
-                Trusted by leading companies across India.
-            </p>
-
-        </div>
-
-        <div class="row text-center g-4">
-
-            <div class="col-md-2 col-6">
-                <div class="feature-card p-4">
-                    <h5>TCS</h5>
                 </div>
+
             </div>
 
-            <div class="col-md-2 col-6">
-                <div class="feature-card p-4">
-                    <h5>Infosys</h5>
-                </div>
-            </div>
-
-            <div class="col-md-2 col-6">
-                <div class="feature-card p-4">
-                    <h5>Wipro</h5>
-                </div>
-            </div>
-
-            <div class="col-md-2 col-6">
-                <div class="feature-card p-4">
-                    <h5>HCL</h5>
-                </div>
-            </div>
-
-            <div class="col-md-2 col-6">
-                <div class="feature-card p-4">
-                    <h5>Accenture</h5>
-                </div>
-            </div>
-
-            <div class="col-md-2 col-6">
-                <div class="feature-card p-4">
-                    <h5>Capgemini</h5>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- ================= FOOTER ================= -->
-
-<footer class="bg-dark text-white py-4">
-
-    <div class="container">
-
-        <div class="row">
-
-            <div class="col-lg-6">
-                <h4>Campus Placement Portal</h4>
-                <p>
-                    Connecting Students, Colleges and Recruiters
-                    through one modern placement platform.
-                </p>
-            </div>
 
             <div class="col-lg-3">
-                <h5>Quick Links</h5>
 
-                <ul class="list-unstyled">
+                <h5>
+                    Quick Links
+                </h5>
 
-                    <li><a href="#" class="text-white text-decoration-none">Home</a></li>
-                    <li><a href="#" class="text-white text-decoration-none">About</a></li>
-                    <li><a href="#" class="text-white text-decoration-none">Jobs</a></li>
-                    <li><a href="#" class="text-white text-decoration-none">Contact</a></li>
+                <ul class="list-unstyled mt-3">
+
+                    <li class="mb-2">
+                        <a href="index.html">
+                            Home
+                        </a>
+                    </li>
+
+                    <li class="mb-2">
+                        <a href="#about">
+                            About
+                        </a>
+                    </li>
+
+                    <li class="mb-2">
+                        <a href="pages/jobs.html">
+                            Jobs
+                        </a>
+                    </li>
+
+                    <li class="mb-2">
+                        <a href="#how-it-works">
+                            How It Works
+                        </a>
+                    </li>
+
+                    <li class="mb-2">
+                        <a href="#contact">
+                            Contact
+                        </a>
+                    </li>
 
                 </ul>
+
             </div>
 
-            <div class="col-lg-3">
 
-                <h5>Contact</h5>
+            <div class="col-lg-4">
 
-                <p>Email : info@placementportal.com</p>
+                <h5>
+                    Login
+                </h5>
 
-                <p>Phone : +91 9876543210</p>
+                <div class="mt-3">
+
+                    <a
+                        href="pages/student-login.html"
+                        class="btn btn-outline-light btn-sm me-2 mb-2">
+
+                        Student
+
+                    </a>
+
+
+                    <a
+                        href="pages/company-login.html"
+                        class="btn btn-outline-light btn-sm me-2 mb-2">
+
+                        Company
+
+                    </a>
+
+
+                    <a
+                        href="pages/admin-login.html"
+                        class="btn btn-warning btn-sm mb-2">
+
+                        Admin
+
+                    </a>
+
+                </div>
 
             </div>
 
         </div>
 
-        <hr>
 
-        <div class="text-center">
+        <hr class="border-secondary mt-5">
 
-            © 2026 Campus Placement Portal | Developed by Adarsh
+
+        <div class="text-center text-secondary">
+
+            © 2026 Campus Placement Portal
+
+            <br>
+
+            Developed by Adarsh
 
         </div>
 
@@ -451,11 +1985,18 @@
 
 </footer>
 
+
 <!-- Bootstrap JS -->
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+<!-- Custom JS -->
 
 <script src="js/script.js"></script>
+
 
 </body>
 

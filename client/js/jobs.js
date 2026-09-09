@@ -1,10 +1,13 @@
 const student = JSON.parse(localStorage.getItem("student"));
+const token = localStorage.getItem("token");
 
 async function loadJobs() {
 
     try {
 
-        const response = await fetch("http://localhost:5000/api/jobs");
+        const response = await fetch(
+            "http://localhost:5000/api/jobs"
+        );
 
         const jobs = await response.json();
 
@@ -16,39 +19,55 @@ async function loadJobs() {
 
             container.innerHTML += `
 
-            <div class="col-md-4 mb-4">
+                <div class="col-md-4 mb-4">
 
-                <div class="card shadow h-100">
+                    <div class="card shadow h-100">
 
-                    <div class="card-body">
+                        <div class="card-body">
 
-                        <h4>${job.job_title}</h4>
+                            <h4>${job.job_title}</h4>
 
-                        <h6 class="text-primary">${job.company_name}</h6>
+                            <h6 class="text-primary">
+                                ${job.company_name}
+                            </h6>
 
-                        <p>${job.job_description}</p>
+                            <p>
+                                ${job.job_description}
+                            </p>
 
-                        <p><strong>Location:</strong> ${job.location}</p>
+                            <p>
+                                <strong>Location:</strong>
+                                ${job.location}
+                            </p>
 
-                        <p><strong>Salary:</strong> ${job.salary}</p>
+                            <p>
+                                <strong>Salary:</strong>
+                                ${job.salary}
+                            </p>
 
-                        <p><strong>Eligibility:</strong> ${job.eligibility}</p>
+                            <p>
+                                <strong>Eligibility:</strong>
+                                ${job.eligibility}
+                            </p>
 
-                        <p><strong>Last Date:</strong> ${job.last_date}</p>
+                            <p>
+                                <strong>Last Date:</strong>
+                                ${job.last_date}
+                            </p>
 
-                        <button
-                            class="btn btn-success w-100"
-                            onclick="applyJob(${job.id})">
+                            <button
+                                class="btn btn-success w-100"
+                                onclick="applyJob(${job.id})">
 
-                            Apply Now
+                                Apply Now
 
-                        </button>
+                            </button>
+
+                        </div>
 
                     </div>
 
                 </div>
-
-            </div>
 
             `;
 
@@ -56,7 +75,7 @@ async function loadJobs() {
 
     } catch (error) {
 
-        console.log(error);
+        console.error(error);
 
         alert("Unable to Load Jobs");
 
@@ -64,9 +83,12 @@ async function loadJobs() {
 
 }
 
+
+// ================= Apply Job =================
+
 async function applyJob(jobId) {
 
-    if (!student) {
+    if (!student || !token) {
 
         alert("Please login as Student first.");
 
@@ -85,12 +107,17 @@ async function applyJob(jobId) {
                 method: "POST",
 
                 headers: {
-                    "Content-Type": "application/json"
+
+                    "Content-Type": "application/json",
+
+                    "Authorization": "Bearer " + token
+
                 },
 
                 body: JSON.stringify({
 
                     student_id: student.id,
+
                     job_id: jobId
 
                 })
@@ -104,12 +131,13 @@ async function applyJob(jobId) {
 
     } catch (error) {
 
-        console.log(error);
+        console.error(error);
 
         alert("Server Error");
 
     }
 
 }
+
 
 loadJobs();
