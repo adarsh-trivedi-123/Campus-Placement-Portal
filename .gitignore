@@ -1,3 +1,15 @@
 node_modules/
 .env
+.vscode/server/uploads/
+server/.env
+server/node_modules/
+node_modules/
+
+# Private uploads and secrets
+server/uploads/
+server/.env
+server/node_modules/
+node_modules/
+
+
 .vscode/

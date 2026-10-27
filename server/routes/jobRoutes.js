@@ -1,3 +1,4 @@
+
 const express = require("express");
 
 const router = express.Router();
@@ -13,6 +14,11 @@ const {
     getCompanyJobs,
     deleteJob
 } = require("../controllers/jobController");
+
+// AI matching controller — new addition
+const {
+    getRecommendedJobs
+} = require("../controllers/aiMatchingController");
 
 
 // =====================================================
@@ -32,6 +38,19 @@ const authMiddleware =
 router.get(
     "/",
     getAllJobs
+);
+
+
+// =====================================================
+// AI-ASSISTED JOB RECOMMENDATIONS
+// =====================================================
+// Authenticated students only
+
+router.get(
+    "/recommended",
+    authMiddleware,
+    authMiddleware.authorizeRoles("student"),
+    getRecommendedJobs
 );
 
 
